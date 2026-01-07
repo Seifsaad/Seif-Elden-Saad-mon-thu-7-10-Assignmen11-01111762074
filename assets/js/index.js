@@ -44,11 +44,16 @@ todayInSpaceNav.addEventListener('click',()=>{
 
 
 async function launchesDev(){
-    let response = await fetch('https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?limit=10')
-    let data = await response.json()
-    console.log(data.results);
-    displayLaunches(data.results)
-    
+    try{
+
+        let response = await fetch('https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?limit=10')
+        let data = await response.json()
+        console.log(data.results);
+        displayLaunches(data.results)
+    }
+    catch(err){
+        console.log(err);
+    }
     
 }
 launchesDev()
@@ -264,10 +269,16 @@ function displayLaunches(launches){
 
 
 async function planetsDev(){
-    let response = await fetch('https://solar-system-opendata-proxy.vercel.app/api/planets')
-    // let data = await response.json()
-    console.log(response);
-    
+    try{
+
+        let response = await fetch('https://solar-system-opendata-proxy.vercel.app/api/planets')
+        // let data = await response.json()
+        console.log(response);
+        
+    }
+    catch{
+        console.log('error');
+    }
     
 }
 planetsDev()
@@ -277,12 +288,17 @@ planetsDev()
 
 
 async function todayDev(){
-    let response = await fetch('https://api.nasa.gov/planetary/apod?api_key=rQaF20zqiAlfajMWKptjk6Hf7M90KlV0BfjqK4JD&date=2025-12-01')
-    console.log(response);
-    
-    // let data = await response.json()
-    // console.log(data);
-    
+    try{
+
+        let response = await fetch('https://api.nasa.gov/planetary/apod?api_key=rQaF20zqiAlfajMWKptjk6Hf7M90KlV0BfjqK4JD&date=2025-12-01')
+        console.log(response);
+        
+        // let data = await response.json()
+        // console.log(data);
+    }
+    catch{
+        console.log("error");
+    }
     
 }
 todayDev()
