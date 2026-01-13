@@ -62,6 +62,7 @@ launchesDev()
 function displayLaunches(launches){
 
     var gridMarkup = "";
+    console.log(launches);
     
     for (let i = 0; i < launches.length; i++) {
         gridMarkup += `
@@ -129,11 +130,139 @@ function displayLaunches(launches){
 
         
         `
-    }
-    launchesGrid.innerHTML = gridMarkup
-    const remainingDays = Math.floor((new Date(launches[0].net).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
-    featuredLaunch.innerHTML = `
-                <div
+        const remainingDays = Math.floor((new Date(launches[0].net).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+        // featuredLaunch.innerHTML = 
+        // `
+        //             <div
+        //           class="relative bg-slate-800/30 border border-slate-700 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all"
+        //         >
+        //           <div
+        //             class="absolute inset-0 bg-linear-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
+        //           ></div>
+        //           <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-6 p-8">
+        //             <div class="flex flex-col justify-between">
+        //               <div>
+        //                 <div class="flex items-center gap-3 mb-4">
+        //                   <span
+        //                     class="px-4 py-1.5 bg-blue-500/20 text-blue-400 rounded-full text-sm font-semibold flex items-center gap-2"
+        //                   >
+        //                     <i class="fas fa-star"></i>
+        //                     Featured Launch
+        //                   </span>
+        //                   <span
+        //                     class="px-4 py-1.5 bg-green-500/20 text-green-400 rounded-full text-sm font-semibold"
+        //                   >
+        //                     ${launches[0].status.abbrev}
+        //                   </span>
+        //                 </div>
+        //                 <h3 class="text-3xl font-bold mb-3 leading-tight">
+        //                   ${launches[0].rocket.configuration.full_name}
+        //                 </h3>
+        //                 <div
+        //                   class="flex flex-col xl:flex-row xl:items-center gap-4 mb-6 text-slate-400"
+        //                 >
+        //                   <div class="flex items-center gap-2">
+        //                     <i class="fas fa-building"></i>
+        //                     <span>${launches[0].image.credit}</span>
+        //                   </div>
+        //                   <div class="flex items-center gap-2">
+        //                     <i class="fas fa-rocket"></i>
+        //                     <span>${launches[0].rocket.configuration.name}</span>
+        //                   </div>
+        //                 </div>
+        //                 <div
+        //                   class="inline-flex items-center gap-3 px-6 py-3 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-xl mb-6"
+        //                 >
+        //                   <i class="fas fa-clock text-2xl text-blue-400"></i>
+        //                   <div>
+        //                     <p class="text-2xl font-bold text-blue-400">${remainingDays}</p>
+        //                     <p class="text-xs text-slate-400">Days Until Launch</p>
+        //                   </div>
+        //                 </div>
+        //                 <div class="grid xl:grid-cols-2 gap-4 mb-6">
+        //                   <div class="bg-slate-900/50 rounded-xl p-4">
+        //                     <p
+        //                       class="text-xs text-slate-400 mb-1 flex items-center gap-2"
+        //                     >
+        //                       <i class="fas fa-calendar"></i>
+        //                       Launch Date
+        //                     </p>
+        //                     <p class="font-semibold">${launches[0].net.slice(0,10)}</p>
+        //                   </div>
+        //                   <div class="bg-slate-900/50 rounded-xl p-4">
+        //                     <p
+        //                       class="text-xs text-slate-400 mb-1 flex items-center gap-2"
+        //                     >
+        //                       <i class="fas fa-clock"></i>
+        //                       Launch Time
+        //                     </p>
+        //                     <p class="font-semibold">${launches[0].net.slice(10,)+' UTC'}</p>
+        //                   </div>
+        //                   <div class="bg-slate-900/50 rounded-xl p-4">
+        //                     <p
+        //                       class="text-xs text-slate-400 mb-1 flex items-center gap-2"
+        //                     >
+        //                       <i class="fas fa-map-marker-alt"></i>
+        //                       Location
+        //                     </p>
+        //                     <p class="font-semibold text-sm">${launches[0].pad.location.timezone_name}</p>
+        //                   </div>
+        //                   <div class="bg-slate-900/50 rounded-xl p-4">
+        //                     <p
+        //                       class="text-xs text-slate-400 mb-1 flex items-center gap-2"
+        //                     >
+        //                       <i class="fas fa-globe"></i>
+        //                       Country
+        //                     </p>
+        //                     <p class="font-semibold">${launches[0].mission.agencies[0].country[0].alpha_3_code}</p>
+        //                   </div>
+        //                 </div>
+        //                 <p class="text-slate-300 leading-relaxed mb-6">
+        //                   ${launches[0].program[0].description}
+        //                 </p>
+        //               </div>
+        //               <div class="flex flex-col md:flex-row gap-3">
+        //                 <button
+        //                   class="flex-1 self-start md:self-center px-6 py-3 bg-blue-500 rounded-xl hover:bg-blue-600 transition-colors font-semibold flex items-center justify-center gap-2"
+        //                 >
+        //                   <i class="fas fa-info-circle"></i>
+        //                   View Full Details
+        //                 </button>
+        //                 <div class="icons self-end md:self-center">
+        //                   <button
+        //                     class="px-4 py-3 bg-slate-700 rounded-xl hover:bg-slate-600 transition-colors"
+        //                   >
+        //                     <i class="far fa-heart"></i>
+        //                   </button>
+        //                   <button
+        //                     class="px-4 py-3 bg-slate-700 rounded-xl hover:bg-slate-600 transition-colors"
+        //                   >
+        //                     <i class="fas fa-bell"></i>
+        //                   </button>
+        //                 </div>
+        //               </div>
+        //             </div>
+        //             <div class="relative">
+        //               <div
+        //                 class="relative h-full min-h-[400px] rounded-2xl overflow-hidden bg-slate-900/50"
+        //               >
+        //                 <!-- Placeholder image/icon since we can't load external images reliably without correct URLs -->
+        //                 <div
+        //                   class="flex items-center justify-center h-full min-h-[400px] bg-slate-800"
+        //                 >
+        //                     <img src="${launches[0].image.image_url}" alt="rocket" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+        //                 </div>
+        //                 <div
+        //                   class="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent"
+        //                 ></div>
+        //               </div>
+        //             </div>
+        //           </div>
+        //         </div>
+    
+        // `
+        featuredLaunch.innerHTML = `
+        <div
               class="relative bg-slate-800/30 border border-slate-700 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all"
             >
               <div
@@ -196,7 +325,7 @@ function displayLaunches(launches){
                           <i class="fas fa-clock"></i>
                           Launch Time
                         </p>
-                        <p class="font-semibold">${launches[0].net.slice(10,)+' UTC'}</p>
+                        <p class="font-semibold">${launches[0].net.slice(10,)+' UTC'}/p>
                       </div>
                       <div class="bg-slate-900/50 rounded-xl p-4">
                         <p
@@ -205,7 +334,7 @@ function displayLaunches(launches){
                           <i class="fas fa-map-marker-alt"></i>
                           Location
                         </p>
-                        <p class="font-semibold text-sm">${launches[0].pad.location.timezone_name}</p>
+                        <p class="font-semibold text-sm">Starbase, Texas</p>
                       </div>
                       <div class="bg-slate-900/50 rounded-xl p-4">
                         <p
@@ -214,11 +343,11 @@ function displayLaunches(launches){
                           <i class="fas fa-globe"></i>
                           Country
                         </p>
-                        <p class="font-semibold">${launches[0].mission.agencies[0].country[0].alpha_3_code}</p>
+                        <p class="font-semibold">${launches[0].pad.country.alpha_3_code+" "+ launches[0].pad.country.id}</p>
                       </div>
                     </div>
                     <p class="text-slate-300 leading-relaxed mb-6">
-                      ${launches[0].program[0].description}
+                      ${launches[0].status.description}
                     </p>
                   </div>
                   <div class="flex flex-col md:flex-row gap-3">
@@ -246,11 +375,10 @@ function displayLaunches(launches){
                   <div
                     class="relative h-full min-h-[400px] rounded-2xl overflow-hidden bg-slate-900/50"
                   >
-                    <!-- Placeholder image/icon since we can't load external images reliably without correct URLs -->
                     <div
                       class="flex items-center justify-center h-full min-h-[400px] bg-slate-800"
                     >
-                        <img src="${launches[0].image.image_url}" alt="rocket" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                      <img src="${launches[0].image.image_url}"  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="">
                     </div>
                     <div
                       class="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent"
@@ -259,8 +387,9 @@ function displayLaunches(launches){
                 </div>
               </div>
             </div>
-
-    `
+        `
+    }
+    launchesGrid.innerHTML = gridMarkup
 
 }
 
